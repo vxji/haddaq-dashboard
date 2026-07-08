@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ====== Design System Tokens ====== */
+@theme {
+  /* Brand Colors */
+  --color-primary: #2554eb;
+  --color-primary-light: #4d76f5;
+  --color-primary-dark: #1a3fbf;
+  --color-primary-soft: #eaf1fe;
+  --color-danger: #dc2626;
+  --color-danger-light: #ef4444;
+  --color-danger-dark: #b91c1c;
+
+  /* Surface Colors */
+  --color-surface: #ffffff;
+  --color-surface-muted: #f6f7fb;
+  --color-surface-subtle: #f1f3f9;
+
+  /* Text Colors */
+  --color-text-primary: #15192b;
+  --color-text-secondary: #4b5267;
+  --color-text-muted: #8b91a7;
+
+  /* Border */
+  --color-border: #e7e9f0;
+  --color-border-focus: #2554eb;
+
+  /* Stage Colors */
+  --color-stage-architectural: #2196f3;
+  --color-stage-structural: #f44336;
+  --color-stage-electrical: #ff9800;
+  --color-stage-mechanical: #4caf50;
+  --color-stage-approval: #9c27b0;
+
+  /* Status Colors */
+  --color-status-pending: #d97706;
+  --color-status-active: #2554eb;
+  --color-status-completed: #16a34a;
+  --color-status-cancelled: #dc2626;
+  --color-status-suspended: #7c3aed;
+
+  /* Fonts */
+  --font-display: var(--font-cairo), "Tajawal", "Arial", sans-serif;
+  --font-arabic: var(--font-ibm-plex-arabic), "Tajawal", "Arial", sans-serif;
+
+  /* Shadows */
+  --shadow-card: 0 1px 2px 0 rgb(21 25 43 / 0.04), 0 1px 3px 0 rgb(21 25 43 / 0.06);
+  --shadow-modal: 0 20px 25px -5px rgb(21 25 43 / 0.1), 0 8px 10px -6px rgb(21 25 43 / 0.1);
+
+  /* shadcn/ui CSS variables (remapped) */
+  --color-background: #ffffff;
+  --color-foreground: #15192b;
+  --color-card: #ffffff;
+  --color-card-foreground: #15192b;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #15192b;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f1f3f9;
+  --color-secondary-foreground: #15192b;
+  --color-muted: #f1f3f9;
+  --color-muted-foreground: #8b91a7;
+  --color-accent: #eaf1fe;
+  --color-accent-foreground: #15192b;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-input: #e7e9f0;
+  --color-ring: #2554eb;
+
+  /* Radius */
+  --radius: 0.625rem;
+}
+
+/* ====== Dark Mode Overrides ====== */
+.dark {
+  color-scheme: dark;
+
+  --color-primary: #4d76f5;
+  --color-primary-light: #7d9bf8;
+  --color-primary-dark: #2554eb;
+  --color-primary-soft: #182449;
+
+  /* Surface Colors */
+  --color-surface: #141724;
+  --color-surface-muted: #0a0c14;
+  --color-surface-subtle: #1c2033;
+
+  /* Text Colors */
+  --color-text-primary: #eef0f8;
+  --color-text-secondary: #a8adc4;
+  --color-text-muted: #6b7086;
+
+  /* Border */
+  --color-border: #262b40;
+  --color-border-focus: #4d76f5;
+
+  /* shadcn/ui CSS variables (remapped) */
+  --color-background: #0a0c14;
+  --color-foreground: #eef0f8;
+  --color-card: #141724;
+  --color-card-foreground: #eef0f8;
+  --color-popover: #141724;
+  --color-popover-foreground: #eef0f8;
+  --color-secondary: #1c2033;
+  --color-secondary-foreground: #eef0f8;
+  --color-muted: #1c2033;
+  --color-muted-foreground: #6b7086;
+  --color-accent: #182449;
+  --color-accent-foreground: #eef0f8;
+  --color-input: #262b40;
+  --color-ring: #4d76f5;
+
+  --shadow-card: 0 1px 2px 0 rgb(0 0 0 / 0.3), 0 1px 3px 0 rgb(0 0 0 / 0.4);
+  --shadow-modal: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.4);
+}
+
+/* ====== Base Styles ====== */
+html {
+  direction: rtl;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-arabic);
+  background-color: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ====== Custom Scrollbar ====== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-subtle);
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c8d4;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a0aab8;
+}
+
+/* ====== Transitions ====== */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+
+/* ====== Focus Styles ====== */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ====== Arabic Numerals in Specific Contexts ====== */
+.ltr-nums {
+  direction: ltr;
+  text-align: right;
+}
+
+/* ====== Autofill override for dark/glassmorphism backgrounds ====== */
+.dark-input:-webkit-autofill,
+.dark-input:-webkit-autofill:hover,
+.dark-input:-webkit-autofill:focus,
+.dark-input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 9999px rgba(37, 84, 235, 0.15) inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff;
+  transition: background-color 9999s ease-in-out 0s !important;
+}
+
+/* ====== Print Styles ====== */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
